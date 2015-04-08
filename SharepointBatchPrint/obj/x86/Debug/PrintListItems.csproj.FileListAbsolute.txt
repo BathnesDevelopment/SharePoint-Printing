@@ -1,0 +1,13 @@
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintListItems.csprojResolveAssemblyReference.cache
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Form1.resources
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Properties.Resources.resources
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintListItems.csproj.GenerateResource.Cache
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.pdb
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe.config
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe.manifest
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.application
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.pdb
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe.manifest
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.application

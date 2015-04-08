@@ -1,0 +1,36 @@
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.pdb
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Form1.resources
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Properties.Resources.resources
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csproj.GenerateResource.Cache
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.pdb
+D:\PritiFolder\R&DFolder\WebSevice\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Watcher.resources
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.pdb
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Form1.resources
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Properties.Resources.resources
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csproj.GenerateResource.Cache
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe
+D:\PritiFolder\R&DFolder\WindowApplication\PrintWordFileInCsharp\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.pdb
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.pdb
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.pdb
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csprojResolveAssemblyReference.cache
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Form1.resources
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Properties.Resources.resources
+\\minotaur\software$\Appv\New folder\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csproj.GenerateResource.Cache
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.pdb
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.pdb
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csprojResolveAssemblyReference.cache
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Form1.resources
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.Properties.Resources.resources
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.csproj.GenerateResource.Cache
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe.config
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.exe.manifest
+C:\SharePointApps\Printing\PrintWordFileInCsharp\bin\Debug\PrintWordFileInCsharp.application
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.exe.manifest
+C:\SharePointApps\Printing\PrintWordFileInCsharp\obj\x86\Debug\PrintWordFileInCsharp.application
