@@ -24,6 +24,11 @@ namespace SharepointBatchPrint
             siteURL = ConfigurationManager.AppSettings["siteURL"];
 
             context = new ClientContext(siteURL);
+            updateItems();
+        }
+
+        public void updateItems () {
+            boxxy.Items.Clear();
             foreach (Document e in populateList()) {
                 boxxy.Items.Add(e);
             }
@@ -73,44 +78,6 @@ namespace SharepointBatchPrint
             return res;
         }
 
-        /*
-        /// <summary>
-        /// downloads a document from a given URL
-        /// </summary>
-        /// <param name="URL">The URL of the document</param>
-        /// <param name="filename">The file name.</param>
-        /// <returns>
-        /// The file path of the downloaded file.
-        /// </returns>
-        private String downloadDocument(string URL, string fileName) {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
-            request.Credentials = System.Net.CredentialCache.DefaultCredentials;
-            request.Timeout = 10000;
-            request.AllowWriteStreamBuffering = false;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream s = response.GetResponseStream();
-
-            string dlDir = "test";
-
-            if (!Directory.Exists(dlDir)) {
-                Directory.CreateDirectory(dlDir);
-            }
-            string res = dlDir + "\\" + fileName;
-            FileStream fs = new FileStream(res, FileMode.Create);
-            byte[] read = new byte[256];
-            int count = s.Read(read, 0, read.Length);
-            while (count > 0) {
-                fs.Write(read, 0, count);
-                count = s.Read(read, 0, read.Length);
-            }
-
-            // Close everything
-            fs.Close();
-            s.Close();
-            response.Close();
-
-            return res;
-        }*/
 
         private void btnPrint_Click(object sender, EventArgs args) {
             foreach (Document item in boxxy.CheckedItems) {
@@ -118,8 +85,27 @@ namespace SharepointBatchPrint
             }
         }
         private void btnDelete_Click(object sender, EventArgs args) {
+            if (boxxy.CheckedItems.Count == 0) {
+                MessageBox.Show("No items selected", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            DialogResult confirmBox = MessageBox.Show(
+                    "This will remove " + boxxy.CheckedItems.Count + " files from the batch print queue. Continue?",
+                    "Delete",
+                    MessageBoxButtons.OKCancel);
+            if (confirmBox == DialogResult.Cancel) {
+                return;
+            }
             foreach (Document item in boxxy.CheckedItems) {
-                item.delete();
+                int doDelete = item.deleteCheck();
+                if (doDelete == -1) {
+                    return;
+                } else if (doDelete == 0) {
+                    continue;
+                }
+                item.objRef.DeleteObject();
+                context.ExecuteQuery();
+                updateItems();
             }
         }
         private void btnSelAll_Click(object sender, System.EventArgs e) {
@@ -132,6 +118,10 @@ namespace SharepointBatchPrint
             for (int i = 0; i < boxxy.Items.Count; i++) {
                 boxxy.SetItemChecked(i, !boxxy.GetItemChecked(i));
             }
+            updateItems();
+        }
+        private void btnRefresh_Click(object sender, EventArgs args) {
+            updateItems();
         }
     }
 }

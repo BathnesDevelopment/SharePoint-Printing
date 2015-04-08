@@ -36,6 +36,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSelAll = new System.Windows.Forms.Button();
             this.btnInvertSel = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // printDialog1
@@ -94,17 +95,28 @@
             this.btnInvertSel.UseVisualStyleBackColor = true;
             this.btnInvertSel.Click += new System.EventHandler(this.btnInvertSel_Click);
             // 
-            // Form1
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(260, 330);
+            this.btnRefresh.Name = "button1";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 365);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnInvertSel);
             this.Controls.Add(this.btnSelAll);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.boxxy);
             this.Controls.Add(this.btnPrint);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Print";
             this.ResumeLayout(false);
 
@@ -122,6 +134,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSelAll;
         private System.Windows.Forms.Button btnInvertSel;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

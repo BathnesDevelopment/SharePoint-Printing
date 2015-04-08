@@ -8,7 +8,6 @@ using System.Text;
 using System.Drawing.Printing;
 using Microsoft.SharePoint.Client;
 using System.Windows.Forms;
-
 namespace SharepointBatchPrint
 {
     class Document
@@ -16,7 +15,7 @@ namespace SharepointBatchPrint
         public String name { get;  set; }
         private String path { get;  set; }
         private String fileLoc;
-        private ListItem objRef;
+        public ListItem objRef;
         private bool deleted;
         private bool printed;
 
@@ -48,8 +47,7 @@ namespace SharepointBatchPrint
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream s = response.GetResponseStream();
 
-            string dlDir = "test";
-
+            string dlDir = "temp";
             if (!Directory.Exists(dlDir)) {
                 Directory.CreateDirectory(dlDir);
             }
@@ -88,18 +86,23 @@ namespace SharepointBatchPrint
             }
         }
 
-        public void delete() {
+        //<summary>
+        // Provides a dialogue box if the document hasn't been printed in this session
+        //</summary>
+        public int deleteCheck() {
             if (!printed) {
                 DialogResult dialogResult = MessageBox.Show(
                     "The file " + name + " has not been printed, are you sure you want to delete this item?",
                     "Warning",
-                    MessageBoxButtons.YesNo);
+                    MessageBoxButtons.YesNoCancel);
                 if (dialogResult == DialogResult.No) {
-                    return;
+                    return 0;
+                } else if (dialogResult == DialogResult.Cancel) {
+                    return -1;
                 }
             }
-            objRef.DeleteObject();
             deleted = true;
+            return 1;
         }
     }
 }
