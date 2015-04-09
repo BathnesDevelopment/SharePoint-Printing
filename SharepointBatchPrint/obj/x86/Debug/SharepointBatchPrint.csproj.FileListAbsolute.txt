@@ -1,3 +1,0 @@
-C:\SharePointApps\SharePoint-Printing\SharepointBatchPrint\bin\Debug\PrintWordFileInCsharp.exe.config
-C:\SharePointApps\SharePoint-Printing\SharepointBatchPrint\obj\x86\Debug\PrintWordFileInCsharp.exe
-C:\SharePointApps\SharePoint-Printing\SharepointBatchPrint\obj\x86\Debug\PrintWordFileInCsharp.pdb
