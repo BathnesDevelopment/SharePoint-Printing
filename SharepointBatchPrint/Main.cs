@@ -21,7 +21,7 @@ namespace SharepointBatchPrint
         public Main() {
             InitializeComponent();
             boxxy.CheckOnClick = true; 
-            // Otherwise checking needs 2 clicks
+            // Otherwise checking needs 2 clicks - makes it feel much more responsive
             // http://stackoverflow.com/questions/4083703/odd-behavior-when-toggling-checkedlistbox-items-checked-state-via-mouseclick-wh
 
             siteURL = ConfigurationManager.AppSettings["siteURL"];
@@ -58,13 +58,14 @@ namespace SharepointBatchPrint
                 String fileLeafRef = "";
                 int i = 0;
                 String key = "";
+                String URI = siteURL;
 
-                while (i < listItem.FieldValues.Count || ((title == "") && (siteURL == ""))) {
+                while (i < listItem.FieldValues.Count || ((title == "") && (URI == ""))) {
                     key = listItem.FieldValues.ElementAt(i).Key;
                     if (key == "FileLeafRef") {
                         fileLeafRef = listItem.FieldValues.ElementAt(i).Value.ToString();
                     } else if (key == "FileRef") {
-                        siteURL += listItem.FieldValues.ElementAt(i).Value.ToString();
+                        URI += listItem.FieldValues.ElementAt(i).Value.ToString();
                     } else if (key == "Title" && (listItem.FieldValues.ElementAt(i).Value != null) && false) {
                         title = listItem.FieldValues.ElementAt(i).Value.ToString();
                     }
@@ -72,9 +73,9 @@ namespace SharepointBatchPrint
                 } // while
 
                 if (title != "") {
-                    res.Add(new Document(title, siteURL, listItem));
+                    res.Add(new Document(title, URI, listItem));
                 } else { //fallback on fileLeafRef
-                    res.Add(new Document(fileLeafRef, siteURL, listItem));
+                    res.Add(new Document(fileLeafRef, URI, listItem));
                 }
             } // foreach
 
