@@ -1,0 +1,5 @@
+app.config
+\bin
+\obj
+*.swp
+Visual Studio 2013
