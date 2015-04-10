@@ -108,8 +108,9 @@ namespace SharepointBatchPrint
                 }
                 item.objRef.DeleteObject();
                 context.ExecuteQuery();
-                updateItems();
             }
+            updateItems();
+
         }
         private void btnSelAll_Click(object sender, System.EventArgs e) {
             for (int i = 0; i < boxxy.Items.Count; i++) {
