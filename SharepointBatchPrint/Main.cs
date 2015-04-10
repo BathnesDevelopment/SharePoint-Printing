@@ -20,6 +20,9 @@ namespace SharepointBatchPrint
 
         public Main() {
             InitializeComponent();
+            boxxy.CheckOnClick = true; 
+            // Otherwise checking needs 2 clicks
+            // http://stackoverflow.com/questions/4083703/odd-behavior-when-toggling-checkedlistbox-items-checked-state-via-mouseclick-wh
 
             siteURL = ConfigurationManager.AppSettings["siteURL"];
 
