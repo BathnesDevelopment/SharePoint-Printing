@@ -18,6 +18,7 @@ namespace SharepointBatchPrint
         public ListItem objRef;
         private bool deleted;
         private bool printed;
+        public int id;
 
         public Document(String name, String path, ListItem objRef) {
             this.name = name;
@@ -26,6 +27,7 @@ namespace SharepointBatchPrint
             this.objRef = objRef;
             deleted = false;
             printed = false;
+            id = objRef.Id;
         }
 
         public override String ToString() {

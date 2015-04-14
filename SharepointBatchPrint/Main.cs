@@ -9,6 +9,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Configuration;
+using Microsoft.SharePoint.Client.WorkflowServices;
+using Microsoft.SharePoint.Client.Workflow;
 
 namespace SharepointBatchPrint
 {
@@ -17,16 +19,34 @@ namespace SharepointBatchPrint
         private ClientContext context;
         private string siteURL;
         private List ls;
+        private WorkflowServicesManager workflowManager;
+        private Guid listID;
+        private WorkflowAssociation removeWorkflow;
+        private InteropService interopService;
+        private WorkflowSubscriptionService subscriptionService;
+        private WorkflowInstanceService instanceService;
 
         public Main() {
             InitializeComponent();
+
             boxxy.CheckOnClick = true; 
             // Otherwise checking needs 2 clicks - makes it feel much more responsive
             // http://stackoverflow.com/questions/4083703/odd-behavior-when-toggling-checkedlistbox-items-checked-state-via-mouseclick-wh
 
+            // Setup global objects
             siteURL = ConfigurationManager.AppSettings["siteURL"];
+                        context = new ClientContext(siteURL);
 
-            context = new ClientContext(siteURL);
+
+            workflowManager = new WorkflowServicesManager(context, context.Web);
+            interopService = workflowManager.GetWorkflowInteropService();
+            subscriptionService = workflowManager.GetWorkflowSubscriptionService();
+            context.Load(subscriptionService);
+            context.ExecuteQuery(); // if in doubt, sprinkle around the code
+            WorkflowAssociationCollection wfAssociations = context.Web.WorkflowAssociations;
+            instanceService = workflowManager.GetWorkflowInstanceService();
+            removeWorkflow = wfAssociations.GetByName("Remove from batch print queue");
+
             updateItems();
         }
 
@@ -43,6 +63,10 @@ namespace SharepointBatchPrint
 
             // Assume the web has a list named "Announcements". 
             ls = context.Web.Lists.GetByTitle(ConfigurationManager.AppSettings["list"]);
+            context.Load(ls);
+            context.ExecuteQuery();
+            listID = ls.Id;
+           
 
             // This creates a CamlQuery that has a RowLimit of 100, and also specifies Scope="RecursiveAll" 
             // so that it grabs all list items, regardless of the folder they are in. 
@@ -89,6 +113,11 @@ namespace SharepointBatchPrint
             }
         }
         private void btnDelete_Click(object sender, EventArgs args) {
+
+            context.Load(subscriptionService);
+            context.ExecuteQuery();
+
+
             if (boxxy.CheckedItems.Count == 0) {
                 MessageBox.Show("No items selected", "Error", MessageBoxButtons.OK);
                 return;
@@ -107,8 +136,22 @@ namespace SharepointBatchPrint
                 } else if (doDelete == 0) {
                     continue;
                 }
-                item.objRef.DeleteObject();
+
+                Dictionary<string,object> log = new Dictionary<string, object>();
+                log.Add("WorkflowHistory", "Hello from the Remote Event Receiver! - " + DateTime.Now.ToString());
+
+                var subs = subscriptionService.EnumerateSubscriptionsByList(listID);
+                context.Load(subs);
                 context.ExecuteQuery();
+
+                instanceService.StartWorkflowOnListItem(subs[0], item.id, log);
+                context.ExecuteQuery();
+
+
+                //http://sharepoint.stackexchange.com/questions/101134/csom-workflow-api-interopservice-cannot-start-new-instances-of-workflows
+                //ClientResult<Guid> deleteResult = interop.StartWorkflow(removeWorkflow.Name, new Guid(), new Guid(), new Guid(),null);
+                
+                //context.ExecuteQuery();
             }
             updateItems();
 
