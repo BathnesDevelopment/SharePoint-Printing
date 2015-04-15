@@ -25,6 +25,7 @@ namespace SharepointBatchPrint
         private InteropService interopService;
         private WorkflowSubscriptionService subscriptionService;
         private WorkflowInstanceService instanceService;
+        private Log log;
 
         public Main() {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace SharepointBatchPrint
 
             // Setup global objects
             siteURL = ConfigurationManager.AppSettings["siteURL"];
-                        context = new ClientContext(siteURL);
+            context = new ClientContext(siteURL);
 
 
             workflowManager = new WorkflowServicesManager(context, context.Web);
@@ -47,6 +48,7 @@ namespace SharepointBatchPrint
             instanceService = workflowManager.GetWorkflowInstanceService();
             removeWorkflow = wfAssociations.GetByName("Remove from batch print queue");
 
+            log = new Log(siteURL, ConfigurationManager.AppSettings["logName"]);
             updateItems();
         }
 
@@ -114,6 +116,7 @@ namespace SharepointBatchPrint
         private void btnPrint_Click(object sender, EventArgs args) {
             foreach (Document item in boxxy.CheckedItems) {
                 if (item.doPrint()) {
+                    log.logAction("Print", "The document " + item.name + " was sent to the printer");
                     item.objRef["Printed"] = DateTime.Now;
                     item.objRef.Update();
                     context.ExecuteQuery();
@@ -146,15 +149,16 @@ namespace SharepointBatchPrint
                 }
 
                 // Start the deletion workflow
-                Dictionary<string,object> log = new Dictionary<string, object>();
-                log.Add("WorkflowHistory", "Hello from the Remote Event Receiver! - " + DateTime.Now.ToString());
+                Dictionary<string,object> workflowHistory = new Dictionary<string, object>();
+                workflowHistory.Add("WorkflowHistory", "Hello from the Remote Event Receiver! - " + DateTime.Now.ToString());
 
                 var subs = subscriptionService.EnumerateSubscriptionsByList(listID);
                 context.Load(subs);
                 context.ExecuteQuery();
 
-                instanceService.StartWorkflowOnListItem(subs[0], item.id, log);
+                instanceService.StartWorkflowOnListItem(subs[0], item.id, workflowHistory);
                 context.ExecuteQuery();
+                log.logAction("Remove", "The document " + item.name + " was removed from the Batch Print Queue");
             }
             updateItems();
 
