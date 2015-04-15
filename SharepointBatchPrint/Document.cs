@@ -70,21 +70,26 @@ namespace SharepointBatchPrint
             this.fileLoc = res;
         }
 
-        public void print() {
+        public bool doPrint() {
             if (deleted) {
-                return;
+                return false;
             }
             download();
             ProcessStartInfo info = new ProcessStartInfo(fileLoc.Trim());
             info.Verb = "Print";
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;
+
             printed = true;
             try {
                 Process.Start(info);
+                return true;
             } catch (Exception ex) {
-                ex.ToString();
-                return;
+                MessageBox.Show(
+                    "An error occured\n" + ex.ToString() + "\n the document was not printed",
+                    "Warning",
+                    MessageBoxButtons.OK);
+                return false;
             }
         }
 

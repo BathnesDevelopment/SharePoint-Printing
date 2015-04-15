@@ -56,7 +56,11 @@ namespace SharepointBatchPrint
                 boxxy.Items.Add(e);
             }
         }
-               
+
+        private void loadAndExecute(ClientObject clientObject) {
+            context.Load(clientObject);
+            context.ExecuteQuery();
+        }
 
         private List<Document> populateList() {
             var res = new List<Document>();
@@ -98,7 +102,7 @@ namespace SharepointBatchPrint
 
                 if (title != "") {
                     res.Add(new Document(title, URI, listItem));
-                } else { //fallback on fileLeafRef
+                } else { // fallback on fileLeafRef
                     res.Add(new Document(fileLeafRef, URI, listItem));
                 }
             } // foreach
@@ -109,7 +113,11 @@ namespace SharepointBatchPrint
 
         private void btnPrint_Click(object sender, EventArgs args) {
             foreach (Document item in boxxy.CheckedItems) {
-                item.print();
+                if (item.doPrint()) {
+                    item.objRef["Printed"] = DateTime.Now;
+                    item.objRef.Update();
+                    context.ExecuteQuery();
+                }
             }
         }
         private void btnDelete_Click(object sender, EventArgs args) {
@@ -137,6 +145,7 @@ namespace SharepointBatchPrint
                     continue;
                 }
 
+                // Start the deletion workflow
                 Dictionary<string,object> log = new Dictionary<string, object>();
                 log.Add("WorkflowHistory", "Hello from the Remote Event Receiver! - " + DateTime.Now.ToString());
 
@@ -146,12 +155,6 @@ namespace SharepointBatchPrint
 
                 instanceService.StartWorkflowOnListItem(subs[0], item.id, log);
                 context.ExecuteQuery();
-
-
-                //http://sharepoint.stackexchange.com/questions/101134/csom-workflow-api-interopservice-cannot-start-new-instances-of-workflows
-                //ClientResult<Guid> deleteResult = interop.StartWorkflow(removeWorkflow.Name, new Guid(), new Guid(), new Guid(),null);
-                
-                //context.ExecuteQuery();
             }
             updateItems();
 
@@ -166,7 +169,6 @@ namespace SharepointBatchPrint
             for (int i = 0; i < boxxy.Items.Count; i++) {
                 boxxy.SetItemChecked(i, !boxxy.GetItemChecked(i));
             }
-            updateItems();
         }
         private void btnRefresh_Click(object sender, EventArgs args) {
             updateItems();
