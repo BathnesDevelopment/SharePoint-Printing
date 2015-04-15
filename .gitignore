@@ -1,5 +1,6 @@
 app.config
 \bin
 \obj
+*.suo
 *.swp
 Visual Studio 2013
