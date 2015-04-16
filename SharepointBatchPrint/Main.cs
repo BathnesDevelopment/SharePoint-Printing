@@ -84,31 +84,17 @@ namespace SharepointBatchPrint
             context.ExecuteQuery();
             
             foreach (ListItem listItem in items) {
-                String title = "";
-                String fileLeafRef = "";
-                int i = 0;
-                String key = "";
-                String URI = siteURL;
-
-                while (i < listItem.FieldValues.Count || ((title == "") && (URI == ""))) {
-                    key = listItem.FieldValues.ElementAt(i).Key;
-                    if (key == "FileLeafRef") {
-                        fileLeafRef = listItem.FieldValues.ElementAt(i).Value.ToString();
-                    } else if (key == "FileRef") {
-                        URI += listItem.FieldValues.ElementAt(i).Value.ToString();
-                    } else if (key == "Title" && (listItem.FieldValues.ElementAt(i).Value != null) && false) {
-                        title = listItem.FieldValues.ElementAt(i).Value.ToString();
-                    }
-                    ++i;
-                } // while
-
-                if (title != "") {
-                    res.Add(new Document(title, URI, listItem));
-                } else { // fallback on fileLeafRef
-                    res.Add(new Document(fileLeafRef, URI, listItem));
+                context.Load(listItem);
+                context.ExecuteQuery();
+                listItem.Update();
+                context.ExecuteQuery();
+                string title = (String)listItem["Title"];
+                if (title == null) {
+                    title = "No Title";
                 }
+                string URI = (String)listItem["DocumentUrl"];
+                res.Add(new Document(title, URI, listItem));
             } // foreach
-
             return res;
         }
 

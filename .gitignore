@@ -3,4 +3,5 @@ app.config
 \obj
 *.suo
 *.swp
+*.user
 Visual Studio 2013

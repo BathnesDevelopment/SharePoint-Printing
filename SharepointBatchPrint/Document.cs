@@ -21,7 +21,9 @@ namespace SharepointBatchPrint
         public int id;
 
         public Document(String name, String path, ListItem objRef) {
-            this.name = name;
+            String ext = ".txt"; // fallback to txt file
+            ext = path.Substring(path.LastIndexOf('.')); 
+            this.name = name +ext;
             this.path = path;
             fileLoc = null;
             this.objRef = objRef;
@@ -42,6 +44,8 @@ namespace SharepointBatchPrint
             if (fileLoc != null || deleted) {
                 return;
             }
+            
+           
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
             request.Credentials = System.Net.CredentialCache.DefaultCredentials;
             request.Timeout = 10000;
