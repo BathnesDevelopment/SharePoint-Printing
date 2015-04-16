@@ -46,7 +46,7 @@ namespace SharepointBatchPrint
             context.ExecuteQuery(); // if in doubt, sprinkle around the code
             WorkflowAssociationCollection wfAssociations = context.Web.WorkflowAssociations;
             instanceService = workflowManager.GetWorkflowInstanceService();
-            removeWorkflow = wfAssociations.GetByName("Remove from batch print queue");
+            removeWorkflow = wfAssociations.GetByName("Withdraw");
 
             log = new Log(siteURL, ConfigurationManager.AppSettings["logName"]);
             updateItems();
@@ -142,7 +142,8 @@ namespace SharepointBatchPrint
                 context.Load(subs);
                 context.ExecuteQuery();
 
-                instanceService.StartWorkflowOnListItem(subs[0], item.id, workflowHistory);
+                instanceService.StartWorkflowOnListItem(subs[1], item.id, workflowHistory);
+                //FIXME: this works on subs[1], should work by name
                 context.ExecuteQuery();
                 log.logAction("Remove", "The document " + item.name + " was removed from the Batch Print Queue");
             }
