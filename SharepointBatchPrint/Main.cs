@@ -126,6 +126,21 @@ namespace SharepointBatchPrint
             if (confirmBox == DialogResult.Cancel) {
                 return;
             }
+            var subs = subscriptionService.EnumerateSubscriptionsByList(listID);
+            context.Load(subs);
+            context.ExecuteQuery();
+            int wfID = -1;
+            for (int i = 0; i < subs.ToList().Count && wfID == -1; ++i ) {
+                if (subs[i].Name == "Withdraw") {
+                    wfID = i;
+                }
+            }
+
+            if (wfID == -1) { // die
+                MessageBox.Show("No withdrawal workflow found. The operation was cancelled", "Critical Error");
+                return;
+            }
+
             foreach (Document item in boxxy.CheckedItems) {
                 int doDelete = item.deleteCheck();
                 if (doDelete == -1) {
@@ -137,13 +152,9 @@ namespace SharepointBatchPrint
                 // Start the deletion workflow
                 Dictionary<string,object> workflowHistory = new Dictionary<string, object>();
                 workflowHistory.Add("WorkflowHistory", "Hello from the Remote Event Receiver! - " + DateTime.Now.ToString());
+                                
 
-                var subs = subscriptionService.EnumerateSubscriptionsByList(listID);
-                context.Load(subs);
-                context.ExecuteQuery();
-
-                instanceService.StartWorkflowOnListItem(subs[1], item.id, workflowHistory);
-                //FIXME: this works on subs[1], should work by name
+                instanceService.StartWorkflowOnListItem(subs[wfID], item.id, workflowHistory);
                 context.ExecuteQuery();
                 log.logAction("Remove", "The document " + item.name + " was removed from the Batch Print Queue");
             }
