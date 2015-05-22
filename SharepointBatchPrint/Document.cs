@@ -8,6 +8,7 @@ using System.Text;
 using System.Drawing.Printing;
 using Microsoft.SharePoint.Client;
 using System.Windows.Forms;
+
 namespace SharepointBatchPrint
 {
     class Document
@@ -19,6 +20,8 @@ namespace SharepointBatchPrint
         private bool deleted;
         private bool printed;
         public int id;
+        public static int n = 0;
+        private int instanceID;
 
         public Document(String name, String path, ListItem objRef) {
             String ext = ".txt"; // fallback to txt file
@@ -30,6 +33,7 @@ namespace SharepointBatchPrint
             deleted = false;
             printed = false;
             id = objRef.Id;
+            instanceID = n++;
         }
 
         public override String ToString() {
@@ -44,7 +48,7 @@ namespace SharepointBatchPrint
             if (fileLoc != null || deleted) {
                 return;
             }
-            
+            deleteLocalCopy();
            
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
             request.Credentials = System.Net.CredentialCache.DefaultCredentials;
@@ -57,7 +61,7 @@ namespace SharepointBatchPrint
             if (!Directory.Exists(dlDir)) {
                 Directory.CreateDirectory(dlDir);
             }
-            string res = dlDir + "\\" + name;
+            string res = dlDir + "\\" + instanceID + name;
             FileStream fs = new FileStream(res, FileMode.Create);
             byte[] read = new byte[256];
             int count = s.Read(read, 0, read.Length);
@@ -72,6 +76,20 @@ namespace SharepointBatchPrint
             response.Close();
 
             this.fileLoc = res;
+        }
+
+        public void deleteLocalCopy() {
+            if (this.fileLoc == null) {
+                return;
+            }
+            try {
+                System.IO.File.Delete(fileLoc);
+                this.fileLoc = null;
+                return;
+            } catch (IOException) {
+                Debug.Fail("Couldn't delete file" + this.fileLoc);
+                return;
+            }
         }
 
         public bool doPrint() {

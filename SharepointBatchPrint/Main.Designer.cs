@@ -13,6 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            foreach (Document item in boxxy.Items) {
+                item.deleteLocalCopy();
+            }
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -37,6 +40,7 @@
             this.btnSelAll = new System.Windows.Forms.Button();
             this.btnInvertSel = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // printDialog1
@@ -97,19 +101,30 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(260, 330);
-            this.btnRefresh.Name = "button1";
+            this.btnRefresh.Location = new System.Drawing.Point(194, 330);
+            this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 7;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(360, 330);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 365);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnInvertSel);
             this.Controls.Add(this.btnSelAll);
@@ -135,6 +150,7 @@
         private System.Windows.Forms.Button btnSelAll;
         private System.Windows.Forms.Button btnInvertSel;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button button1;
     }
 }
 

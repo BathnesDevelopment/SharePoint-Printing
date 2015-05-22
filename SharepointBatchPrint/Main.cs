@@ -126,6 +126,7 @@ namespace SharepointBatchPrint
                     context.ExecuteQuery();
                 }
             }
+            
         }
         private void btnDelete_Click(object sender, EventArgs args) {
 
@@ -189,7 +190,17 @@ namespace SharepointBatchPrint
             }
         }
         private void btnRefresh_Click(object sender, EventArgs args) {
+            foreach (Document item in boxxy.Items) {
+                item.deleteLocalCopy();
+            }
             updateItems();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            MessageBox.Show("SharepointBatchPrint by Alex Bryson version 1.0.2\n"
+                +"To use: Select the documents you want to print and click print, please ensure the default printer is set up as the printer you wish to print to\n"
+                +"The invert selection button selects all unselected items, and simultaniously deselects all selected items.\n"
+                +"The Delete button triggers the deletion workflow for all selected items", "Help");
         }
     }
 }
