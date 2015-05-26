@@ -80,18 +80,23 @@ namespace SharepointBatchPrint
             // Retrieve all items in the ListItemCollection from List.GetItems(Query). 
             context.Load(items);
             context.ExecuteQuery();
-            
+
             foreach (ListItem listItem in items) {
-                context.Load(listItem);
-                context.ExecuteQuery();
-                listItem.Update();
-                context.ExecuteQuery();
-                string title = (String)listItem["Title"];
-                if (title == null) {
-                    title = "No Title";
+                try {
+                    context.Load(listItem);
+                    context.ExecuteQuery();
+                    listItem.Update();
+                    context.ExecuteQuery();
+                    string title = (String)listItem["Title"];
+                    if (title == null) {
+                        title = "No Title";
+                    }
+                    string URI = (String)listItem["DocumentUrl"];
+                    res.Add(new Document(title, URI, listItem));
+                } catch (Microsoft.SharePoint.Client.ServerException) {
+                    continue;
                 }
-                string URI = (String)listItem["DocumentUrl"];
-                res.Add(new Document(title, URI, listItem));
+                
             } // foreach
             return res;
         }
@@ -159,15 +164,17 @@ namespace SharepointBatchPrint
             }
 
             if (wfID == -1) { // die
-                MessageBox.Show("No withdrawal workflow found. The operation was cancelled", "Critical Error");
+                MessageBox.Show("No withdrawal workflow found. Cannot continue.", "Critical Error");
                 return;
             }
 
             foreach (Document item in boxxy.CheckedItems) {
                 int doDelete = item.deleteCheck();
                 if (doDelete == -1) {
+                    // cancel
                     return;
                 } else if (doDelete == 0) {
+                    // No
                     continue;
                 }
 
@@ -197,10 +204,10 @@ namespace SharepointBatchPrint
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            MessageBox.Show("SharepointBatchPrint by Alex Bryson version 1.0.2\n"
-                +"To use: Select the documents you want to print and click print, please ensure the default printer is set up as the printer you wish to print to\n"
-                +"The invert selection button selects all unselected items, and simultaniously deselects all selected items.\n"
-                +"The Delete button triggers the deletion workflow for all selected items", "Help");
+            MessageBox.Show("SharepointBatchPrint\nVersion 1.0.3\n\n"
+                +"Select the documents you want to print and click print, please ensure the default printer is set up as the printer you wish to print to.\n\n"
+                +"The invert selection button selects all unselected items, and simultaniously deselects all selected items.\n\n"
+                +"The Delete button triggers the deletion workflow for all selected items. You will be prompted if you haven't printed the documents in this session.", "Help");
         }
     }
 }
