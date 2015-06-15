@@ -97,6 +97,7 @@ namespace SharepointBatchPrint
                 return false;
             }
             download();
+            Process proc = null;
             ProcessStartInfo info = new ProcessStartInfo(fileLoc.Trim());
             info.Verb = "Print";
             info.CreateNoWindow = true;
@@ -104,7 +105,21 @@ namespace SharepointBatchPrint
 
             printed = true;
             try {
-                Process.Start(info);
+                proc = Process.Start(info);
+                int i = 0;
+                while (!proc.HasExited) {
+                    System.Threading.Thread.Sleep(50);
+                    ++i;
+                    if (i > 100) {
+                        MessageBox.Show(
+                           "It seems to be taking a long time to print this document. "+ 
+                           "Please check for error messages from the program, and press ok when you are ready "+
+                           "to print the next document",
+                           "Warning",
+                           MessageBoxButtons.OK);
+                                return true;
+                            }
+                }
                 return true;
             } catch (Exception ex) {
                 MessageBox.Show(
