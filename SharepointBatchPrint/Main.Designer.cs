@@ -41,6 +41,7 @@
             this.btnInvertSel = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtNDocs = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // printDialog1
@@ -68,6 +69,7 @@
             this.boxxy.Name = "boxxy";
             this.boxxy.Size = new System.Drawing.Size(584, 304);
             this.boxxy.TabIndex = 3;
+            this.boxxy.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boxxy_updateCount);
             // 
             // btnDelete
             // 
@@ -119,11 +121,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.txtNDocs.AutoSize = true;
+            this.txtNDocs.Location = new System.Drawing.Point(275, 335);
+            this.txtNDocs.Name = "label1";
+            this.txtNDocs.Size = new System.Drawing.Size(35, 13);
+            this.txtNDocs.TabIndex = 9;
+            this.txtNDocs.Text = "label1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 365);
+            this.ClientSize = new System.Drawing.Size(608, 365);
+            this.Controls.Add(this.txtNDocs);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnInvertSel);
@@ -133,7 +145,9 @@
             this.Controls.Add(this.btnPrint);
             this.Name = "Main";
             this.Text = "Print";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -151,6 +165,7 @@
         private System.Windows.Forms.Button btnInvertSel;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label txtNDocs;
     }
 }
 

@@ -25,7 +25,8 @@ namespace SharepointBatchPrint
 
         public Document(String name, String path, ListItem objRef) {
             String ext = ".txt"; // fallback to txt file
-            ext = path.Substring(path.LastIndexOf('.')); 
+            ext = path.Substring(path.LastIndexOf('.'));
+            name = name.Replace('/', ' ').Replace('*', ' ').Replace('"', ' ').Replace('\\', ' ').Replace('[', ' ').Replace(']', ' ').Replace(':', ' ').Replace(';', ' ').Replace('|', ' ').Replace('=', ' ').Replace(',', ' ').Replace('.', ' ');
             this.name = name +ext;
             this.path = path;
             fileLoc = null;

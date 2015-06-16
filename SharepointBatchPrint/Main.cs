@@ -98,6 +98,7 @@ namespace SharepointBatchPrint
                 }
                 
             } // foreach
+            txtNDocs.Text = "Selected: " + boxxy.CheckedItems.Count;
             return res;
         }
 
@@ -205,11 +206,20 @@ namespace SharepointBatchPrint
             updateItems();
         }
 
+        private void boxxy_updateCount(object sender, MouseEventArgs e) {
+            txtNDocs.Text = "Selected: " +  boxxy.CheckedItems.Count;
+        }
+
         private void button1_Click(object sender, EventArgs e) {
-            MessageBox.Show("SharepointBatchPrint\nVersion 1.0.4\n\n"
+            MessageBox.Show("SharepointBatchPrint\nVersion 1.1\n\n"
                 +"Select the documents you want to print and click print, please ensure the default printer is set up as the printer you wish to print to.\n\n"
                 +"The invert selection button selects all unselected items, and simultaniously deselects all selected items.\n\n"
                 +"The Delete button triggers the deletion workflow for all selected items. You will be prompted if you haven't printed the documents in this session.", "Help");
         }
+
+        private void Main_Load(object sender, EventArgs e) {
+
+        }
+
     }
 }
