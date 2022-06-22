@@ -52,7 +52,8 @@ namespace SharepointBatchPrint
 
         public void updateItems () {
             boxxy.Items.Clear();
-            foreach (Document e in populateList()) {
+            foreach (Document e in populateList())
+            {
                 boxxy.Items.Add(e);
             }
         }
@@ -74,33 +75,53 @@ namespace SharepointBatchPrint
 
             // This creates a CamlQuery that has a RowLimit of 100, and also specifies Scope="RecursiveAll" 
             // so that it grabs all list items, regardless of the folder they are in. 
-            CamlQuery query = CamlQuery.CreateAllItemsQuery(100);
+            CamlQuery query = CamlQuery.CreateAllItemsQuery(40);
             ListItemCollection items = ls.GetItems(query);
 
             // Retrieve all items in the ListItemCollection from List.GetItems(Query). 
             context.Load(items);
             context.ExecuteQuery();
 
-            foreach (ListItem listItem in items) {
-                try {
+            foreach (ListItem listItem in items)
+            {
+                try
+                {
+
+                    Console.WriteLine((String)listItem["DocumentUrl"]);
                     context.Load(listItem);
+                    Console.WriteLine("load ok");
                     context.ExecuteQuery();
+                    Console.WriteLine("execute ok");
                     listItem.Update();
+                    Console.WriteLine("update ok");
                     context.ExecuteQuery();
+                    Console.WriteLine("2nd execute ok");
                     string title = (String)listItem["Title"];
-                    if (title == null) {
+                    if (title == null)
+                    {
                         title = "No Title";
                     }
                     string URI = (String)listItem["DocumentUrl"];
+
+                    Console.WriteLine("res:" + res.Count);
+
                     res.Add(new Document(title, URI, listItem));
-                } catch (Microsoft.SharePoint.Client.ServerException) {
+
+                    Console.WriteLine(res.Count);
+
+
+                }
+                catch (Microsoft.SharePoint.Client.ServerException)
+                {
+                    Console.WriteLine("Broken for each list item");
                     continue;
                 }
-                
+
             } // foreach
             txtNDocs.Text = "Selected: " + boxxy.CheckedItems.Count;
             return res;
         }
+
 
 
         private void btnPrint_Click(object sender, EventArgs args) {

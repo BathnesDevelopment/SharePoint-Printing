@@ -25,17 +25,23 @@ namespace SharepointBatchPrint
 
         public Document(String name, String path, ListItem objRef) {
             String ext = ".txt"; // fallback to txt file
-            ext = path.Substring(path.LastIndexOf('.'));
-            name = name.Replace('/', ' ').Replace('*', ' ').Replace('"', ' ').Replace('\\', ' ').Replace('[', ' ').Replace(']', ' ').Replace(':', ' ').Replace(';', ' ').Replace('|', ' ').Replace('=', ' ').Replace(',', ' ').Replace('.', ' ');
-            this.name = name +ext;
-            this.path = path;
-            fileLoc = null;
-            this.objRef = objRef;
-            deleted = false;
-            printed = false;
-            id = objRef.Id;
-            instanceID = n++;
-        }
+
+                int pathLen = path.LastIndexOf('.');
+                if (pathLen > 0)
+                { 
+                    ext = path.Substring(path.LastIndexOf('.'));
+                }
+                name = name.Replace('/', ' ').Replace('*', ' ').Replace('"', ' ').Replace('\\', ' ').Replace('[', ' ').Replace(']', ' ').Replace(':', ' ').Replace(';', ' ').Replace('|', ' ').Replace('=', ' ').Replace(',', ' ').Replace('.', ' ');
+                this.name = name + ext;
+                this.path = path;
+                fileLoc = null;
+                this.objRef = objRef;
+                deleted = false;
+                printed = false;
+                id = objRef.Id;
+                instanceID = n++;
+
+            }
 
         public override String ToString() {
             return name;

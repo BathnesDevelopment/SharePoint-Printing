@@ -54,9 +54,10 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(441, 330);
+            this.btnPrint.Location = new System.Drawing.Point(588, 406);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.Size = new System.Drawing.Size(100, 28);
             this.btnPrint.TabIndex = 2;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -65,17 +66,19 @@
             // boxxy
             // 
             this.boxxy.FormattingEnabled = true;
-            this.boxxy.Location = new System.Drawing.Point(12, 12);
+            this.boxxy.Location = new System.Drawing.Point(16, 15);
+            this.boxxy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.boxxy.Name = "boxxy";
-            this.boxxy.Size = new System.Drawing.Size(584, 304);
+            this.boxxy.Size = new System.Drawing.Size(777, 361);
             this.boxxy.TabIndex = 3;
             this.boxxy.MouseMove += new System.Windows.Forms.MouseEventHandler(this.boxxy_updateCount);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(522, 330);
+            this.btnDelete.Location = new System.Drawing.Point(696, 406);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -83,9 +86,10 @@
             // 
             // btnSelAll
             // 
-            this.btnSelAll.Location = new System.Drawing.Point(12, 330);
+            this.btnSelAll.Location = new System.Drawing.Point(16, 406);
+            this.btnSelAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSelAll.Name = "btnSelAll";
-            this.btnSelAll.Size = new System.Drawing.Size(75, 23);
+            this.btnSelAll.Size = new System.Drawing.Size(100, 28);
             this.btnSelAll.TabIndex = 5;
             this.btnSelAll.Text = "Select All";
             this.btnSelAll.UseVisualStyleBackColor = true;
@@ -93,9 +97,10 @@
             // 
             // btnInvertSel
             // 
-            this.btnInvertSel.Location = new System.Drawing.Point(93, 330);
+            this.btnInvertSel.Location = new System.Drawing.Point(124, 406);
+            this.btnInvertSel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnInvertSel.Name = "btnInvertSel";
-            this.btnInvertSel.Size = new System.Drawing.Size(95, 23);
+            this.btnInvertSel.Size = new System.Drawing.Size(127, 28);
             this.btnInvertSel.TabIndex = 6;
             this.btnInvertSel.Text = "Invert Selection";
             this.btnInvertSel.UseVisualStyleBackColor = true;
@@ -103,9 +108,10 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(194, 330);
+            this.btnRefresh.Location = new System.Drawing.Point(259, 406);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(100, 28);
             this.btnRefresh.TabIndex = 7;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -113,28 +119,30 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(360, 330);
+            this.button1.Location = new System.Drawing.Point(480, 406);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 8;
             this.button1.Text = "Help";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // txtNDocs
             // 
             this.txtNDocs.AutoSize = true;
-            this.txtNDocs.Location = new System.Drawing.Point(275, 335);
-            this.txtNDocs.Name = "label1";
-            this.txtNDocs.Size = new System.Drawing.Size(35, 13);
+            this.txtNDocs.Location = new System.Drawing.Point(367, 412);
+            this.txtNDocs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtNDocs.Name = "txtNDocs";
+            this.txtNDocs.Size = new System.Drawing.Size(46, 17);
             this.txtNDocs.TabIndex = 9;
             this.txtNDocs.Text = "label1";
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 365);
+            this.ClientSize = new System.Drawing.Size(811, 449);
             this.Controls.Add(this.txtNDocs);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRefresh);
@@ -143,6 +151,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.boxxy);
             this.Controls.Add(this.btnPrint);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Main";
             this.Text = "Print";
             this.Load += new System.EventHandler(this.Main_Load);

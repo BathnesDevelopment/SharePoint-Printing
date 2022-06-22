@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SharepointBatchPrint.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="siteURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://rbdoc</Value>
+    </Setting>
+    <Setting Name="list" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Batch Print</Value>
+    </Setting>
+    <Setting Name="logName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Batch Print Log</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

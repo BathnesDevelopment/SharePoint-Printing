@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-SharepointBatchPrint",
+      "appliesTo": "SharepointBatchPrint/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-SharepointBatchPrint",
+      "appliesTo": "SharepointBatchPrint/",
+      "type": "launch"
+    }
+  ]
+}
