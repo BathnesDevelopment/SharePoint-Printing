@@ -5,3 +5,5 @@ app.config
 *.swp
 *.user
 Visual Studio 2013
+/packages/
+!packages/repositories.config

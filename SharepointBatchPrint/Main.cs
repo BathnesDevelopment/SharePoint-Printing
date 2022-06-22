@@ -86,34 +86,20 @@ namespace SharepointBatchPrint
             {
                 try
                 {
-
-                    Console.WriteLine((String)listItem["DocumentUrl"]);
                     context.Load(listItem);
-                    Console.WriteLine("load ok");
                     context.ExecuteQuery();
-                    Console.WriteLine("execute ok");
                     listItem.Update();
-                    Console.WriteLine("update ok");
                     context.ExecuteQuery();
-                    Console.WriteLine("2nd execute ok");
                     string title = (String)listItem["Title"];
                     if (title == null)
                     {
                         title = "No Title";
                     }
                     string URI = (String)listItem["DocumentUrl"];
-
-                    Console.WriteLine("res:" + res.Count);
-
                     res.Add(new Document(title, URI, listItem));
-
-                    Console.WriteLine(res.Count);
-
-
                 }
                 catch (Microsoft.SharePoint.Client.ServerException)
                 {
-                    Console.WriteLine("Broken for each list item");
                     continue;
                 }
 
